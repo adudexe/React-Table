@@ -10,9 +10,6 @@ import type { PaginatorPageChangeEvent } from 'primereact/paginator';
 import type { ChangeEvent } from 'react';
 
 
-
-
-
 interface Product {
   id: number;
   artist_title: string;
@@ -22,20 +19,19 @@ interface Product {
 }
 
 
-
-
 function App() {
 
   const op = useRef<OverlayPanel>(null);
   const [products,setProducts] = useState<Product[]>([]);
   const [page,setPage] = useState(0);
-  const [rowClick,setRowClick] = useState(false);
+  // const [rowClick,setRowClick] = useState(false);
+  const rowClick = false;
   const [selectedProducts,setSelectedProducts] = useState<Product[]>([]);
   const [totalRecord,setTotalRecord] = useState<number>();
   const [loading,setLoading] = useState<any>();
   const [value,setValue] = useState(0);
   const [limit,setLimit] = useState(0); 
-  const URL = import.meta.env.VITE_API_URL;
+  const URL = import.meta.env.VITE_API_URL || 'https://api.artic.edu/api/v1/artworks';
   useEffect(() => {
     fetchData();
   },[page])
